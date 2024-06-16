@@ -13,25 +13,50 @@ namespace LocalFarmersApi.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public IHttpActionResult GetOrders()
+        public IHttpActionResult GetOrders(int page = 1, int pageSize = 5, DateTime? startDate = null, DateTime? endDate = null, decimal? minAmount = null, decimal? maxAmount = null)
         {
             var userId = User.Identity.GetUserId();
-            var orders = db.Orders
-                            .Where(o => o.UserId == userId)
-                            .Select(o => new OrderDTO
-                            {
-                                Id = o.Id,
-                                OrderDate = o.OrderDate,
-                                TotalAmount = o.TotalAmount,
-                                OrderItems = o.OrderItems.Select(oi => new OrderItemDTO
-                                {
-                                    ProductId = oi.ProductId,
-                                    ProductName = oi.Product.Name,
-                                    UnitPrice = oi.UnitPrice,
-                                    Quantity = oi.Quantity
-                                }).ToList()
-                            })
-                            .ToList();
+            IQueryable<Order> query = db.Orders.Where(o => o.UserId == userId);
+
+            if (startDate.HasValue)
+            {
+                query = query.Where(o => o.OrderDate >= startDate.Value);
+            }
+
+            if (endDate.HasValue)
+            {
+                query = query.Where(o => o.OrderDate <= endDate.Value);
+            }
+
+            if (minAmount.HasValue)
+            {
+                query = query.Where(o => o.TotalAmount >= minAmount.Value);
+            }
+
+            if (maxAmount.HasValue)
+            {
+                query = query.Where(o => o.TotalAmount <= maxAmount.Value);
+            }
+
+            int skip = (page - 1) * pageSize;
+
+            var orders = query.OrderByDescending(o => o.OrderDate)
+                              .Skip(skip)
+                              .Take(pageSize)
+                              .Select(o => new OrderDTO
+                              {
+                                  Id = o.Id,
+                                  OrderDate = o.OrderDate,
+                                  TotalAmount = o.TotalAmount,
+                                  OrderItems = o.OrderItems.Select(oi => new OrderItemDTO
+                                  {
+                                      ProductId = oi.ProductId,
+                                      ProductName = oi.Product.Name,
+                                      UnitPrice = oi.UnitPrice,
+                                      Quantity = oi.Quantity
+                                  }).ToList()
+                              })
+                              .ToList();
 
             return Ok(orders);
         }
@@ -39,11 +64,28 @@ namespace LocalFarmersApi.Controllers
         public IHttpActionResult GetOrder(int id)
         {
             var userId = User.Identity.GetUserId();
-            var order = db.Orders.FirstOrDefault(o => o.Id == id && o.UserId == userId);
+            var order = db.Orders
+                          .Where(o => o.Id == id && o.UserId == userId)
+                          .Select(o => new OrderDTO
+                          {
+                              Id = o.Id,
+                              OrderDate = o.OrderDate,
+                              TotalAmount = o.TotalAmount,
+                              OrderItems = o.OrderItems.Select(oi => new OrderItemDTO
+                              {
+                                  ProductId = oi.ProductId,
+                                  ProductName = oi.Product.Name,
+                                  UnitPrice = oi.UnitPrice,
+                                  Quantity = oi.Quantity
+                              }).ToList()
+                          })
+                          .FirstOrDefault();
+
             if (order == null)
             {
                 return NotFound();
             }
+
             return Ok(order);
         }
 
