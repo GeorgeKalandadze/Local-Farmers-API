@@ -4,21 +4,42 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using LocalFarmersApi.DTO;
 using LocalFarmersApi.Models;
 
 namespace LocalFarmersApi.Controllers
 {
+    [Authorize]
     public class ProductsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Product
-        public IEnumerable<Product> GetProducts()
+        public IHttpActionResult GetProducts()
         {
-            return db.Products.Include(p => p.Category).ToList();
+            var products = db.Products
+                            .Include(p => p.Category)
+                            .Select(p => new ProductDTO
+                            {
+                                Id = p.Id,
+                                Name = p.Name,
+                                Description = p.Description,
+                                Price = p.Price,
+                                StockQuantity = p.StockQuantity,
+                                CreatedAt = p.CreatedAt,
+                                CategoryId = p.CategoryId,
+                                Organic = p.Organic,
+                                Category = new CategoryDTO
+                                {
+                                    Id = p.Category.Id,
+                                    Name = p.Category.Name,
+                                    Description = p.Category.Description
+                        }
+                            })
+                            .ToList();
+
+            return Ok(products);
         }
 
-        // GET: api/Product/5
         public IHttpActionResult GetProduct(int id)
         {
             Product product = db.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
@@ -29,7 +50,7 @@ namespace LocalFarmersApi.Controllers
             return Ok(product);
         }
 
-        // PUT: api/Product/5
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult PutProduct(int id, Product product)
         {
             if (!ModelState.IsValid)
@@ -67,8 +88,7 @@ namespace LocalFarmersApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-
-        // POST: api/Product
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult PostProduct(Product product)
         {
             if (!ModelState.IsValid)
@@ -82,7 +102,8 @@ namespace LocalFarmersApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
         }
 
-        // DELETE: api/Product/5
+
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteProduct(int id)
         {
             Product product = db.Products.Find(id);

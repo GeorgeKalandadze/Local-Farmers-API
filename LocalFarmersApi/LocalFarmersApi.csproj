@@ -288,12 +288,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\CategoryDTO.cs" />
+    <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202406161144130_InitialCreate.cs" />
     <Compile Include="Migrations\202406161144130_InitialCreate.designer.cs">
       <DependentUpon>202406161144130_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406161318103_SeedRoles.cs" />
+    <Compile Include="Migrations\202406161318103_SeedRoles.designer.cs">
+      <DependentUpon>202406161318103_SeedRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -397,6 +403,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202406161144130_InitialCreate.resx">
       <DependentUpon>202406161144130_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406161318103_SeedRoles.resx">
+      <DependentUpon>202406161318103_SeedRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -328,3 +328,4 @@ C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\Local
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.pdb
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.Migrations.InitialCreate.resources
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.csproj.GenerateResource.cache
+C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.Migrations.SeedRoles.resources

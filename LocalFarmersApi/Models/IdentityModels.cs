@@ -21,6 +21,7 @@ namespace LocalFarmersApi.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+
         }
 
         public DbSet<Category> Categories { get; set; }
