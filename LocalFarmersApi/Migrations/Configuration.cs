@@ -14,10 +14,15 @@
 
         protected override void Seed(LocalFarmersApi.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            base.Seed(context);
+            context.Categories.AddOrUpdate(
+                c => c.Name,
+                new Category { Name = "Vegetables", Description = "Fresh vegetables" },
+                new Category { Name = "Fruits", Description = "Fresh fruits" },
+                new Category { Name = "Dairy", Description = "Dairy products" }
+            );
+            context.SaveChanges();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
         }
     }
 }
