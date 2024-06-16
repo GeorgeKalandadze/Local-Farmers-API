@@ -88,7 +88,6 @@ namespace LocalFarmersApi.Controllers
             return Ok(products);
         }
 
-
         public IHttpActionResult GetProduct(int id)
         {
             Product product = db.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
@@ -102,6 +101,11 @@ namespace LocalFarmersApi.Controllers
         [Authorize(Roles = "Admin")]
         public IHttpActionResult PutProduct(int id, Product product)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return Content(HttpStatusCode.Forbidden, new { Message = "You are not authorized to perform this action." });
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -140,6 +144,11 @@ namespace LocalFarmersApi.Controllers
         [Authorize(Roles = "Admin")]
         public IHttpActionResult PostProduct(Product product)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return Content(HttpStatusCode.Forbidden, new { Message = "You are not authorized to perform this action." });
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -151,10 +160,14 @@ namespace LocalFarmersApi.Controllers
             return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
         }
 
-
         [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteProduct(int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return Content(HttpStatusCode.Forbidden, new { Message = "You are not authorized to perform this action." });
+            }
+
             Product product = db.Products.Find(id);
             if (product == null)
             {
@@ -164,7 +177,7 @@ namespace LocalFarmersApi.Controllers
             db.Products.Remove(product);
             db.SaveChanges();
 
-            return Ok("product deleted successfully");
+            return Ok("Product deleted successfully");
         }
 
         protected override void Dispose(bool disposing)
