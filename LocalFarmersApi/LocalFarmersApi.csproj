@@ -286,17 +286,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202406141014477_InitialCreate.cs" />
-    <Compile Include="Migrations\202406141014477_InitialCreate.designer.cs">
-      <DependentUpon>202406141014477_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202406161059183_CategoryProducts.cs" />
-    <Compile Include="Migrations\202406161059183_CategoryProducts.designer.cs">
-      <DependentUpon>202406161059183_CategoryProducts.cs</DependentUpon>
+    <Compile Include="Migrations\202406161144130_InitialCreate.cs" />
+    <Compile Include="Migrations\202406161144130_InitialCreate.designer.cs">
+      <DependentUpon>202406161144130_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -398,11 +395,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202406141014477_InitialCreate.resx">
-      <DependentUpon>202406141014477_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202406161059183_CategoryProducts.resx">
-      <DependentUpon>202406161059183_CategoryProducts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202406161144130_InitialCreate.resx">
+      <DependentUpon>202406161144130_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

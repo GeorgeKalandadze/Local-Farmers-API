@@ -7,13 +7,13 @@ namespace LocalFarmersApi.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CategoryProducts : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CategoryProducts));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202406161059183_CategoryProducts"; }
+            get { return "202406161144130_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

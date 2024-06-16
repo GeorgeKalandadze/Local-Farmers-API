@@ -322,10 +322,9 @@ C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\bin\Microsoft.O
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\bin\System.Web.Http.Owin.xml
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.csproj.AssemblyReference.cache
-C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.Migrations.InitialCreate.resources
-C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.csproj.GenerateResource.cache
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.csproj.CoreCompileInputs.cache
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.csproj.CopyComplete
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.dll
 C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.pdb
-C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.Migrations.CategoryProducts.resources
+C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.Migrations.InitialCreate.resources
+C:\Users\user\OneDrive\Desktop\Local-Farmers-API\LocalFarmersApi\obj\Debug\LocalFarmersApi.csproj.GenerateResource.cache

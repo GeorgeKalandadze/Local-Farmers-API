@@ -15,14 +15,15 @@
         protected override void Seed(LocalFarmersApi.Models.ApplicationDbContext context)
         {
             base.Seed(context);
+
             context.Categories.AddOrUpdate(
                 c => c.Name,
                 new Category { Name = "Vegetables", Description = "Fresh vegetables" },
                 new Category { Name = "Fruits", Description = "Fresh fruits" },
                 new Category { Name = "Dairy", Description = "Dairy products" }
             );
-            context.SaveChanges();
 
+            context.SaveChanges();
         }
     }
 }
