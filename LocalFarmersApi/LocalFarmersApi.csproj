@@ -292,6 +292,8 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DTO\CartItemDTO.cs" />
     <Compile Include="DTO\CategoryDTO.cs" />
+    <Compile Include="DTO\OrderDTO.cs" />
+    <Compile Include="DTO\OrderItemDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

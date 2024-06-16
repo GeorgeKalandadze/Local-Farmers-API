@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using LocalFarmersApi.DTO;
 using LocalFarmersApi.Models;
 using Microsoft.AspNet.Identity;
 
@@ -15,7 +16,23 @@ namespace LocalFarmersApi.Controllers
         public IHttpActionResult GetOrders()
         {
             var userId = User.Identity.GetUserId();
-            var orders = db.Orders.Where(o => o.UserId == userId).ToList();
+            var orders = db.Orders
+                            .Where(o => o.UserId == userId)
+                            .Select(o => new OrderDTO
+                            {
+                                Id = o.Id,
+                                OrderDate = o.OrderDate,
+                                TotalAmount = o.TotalAmount,
+                                OrderItems = o.OrderItems.Select(oi => new OrderItemDTO
+                                {
+                                    ProductId = oi.ProductId,
+                                    ProductName = oi.Product.Name,
+                                    UnitPrice = oi.UnitPrice,
+                                    Quantity = oi.Quantity
+                                }).ToList()
+                            })
+                            .ToList();
+
             return Ok(orders);
         }
 
@@ -57,7 +74,8 @@ namespace LocalFarmersApi.Controllers
             db.CartItems.RemoveRange(cartItems);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);
+            return Ok("Order placed successfully.");
         }
+
     }
 }
