@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Web.Http;
+using LocalFarmersApi.DTO;
 using LocalFarmersApi.Models;
 using Microsoft.AspNet.Identity;
 
@@ -16,7 +17,18 @@ namespace LocalFarmersApi.Controllers
         public IHttpActionResult GetCartItems()
         {
             var userId = User.Identity.GetUserId();
-            var cartItems = db.CartItems.Where(ci => ci.UserId == userId).ToList();
+            var cartItems = db.CartItems
+                              .Where(ci => ci.UserId == userId)
+                              .Select(ci => new CartItemDTO
+                              {
+                                  Id = ci.Id,
+                                  ProductId = ci.ProductId,
+                                  ProductName = ci.Product.Name,
+                                  ProductPrice = ci.Product.Price,
+                                  Quantity = ci.Quantity
+                              })
+                              .ToList();
+
             return Ok(cartItems);
         }
 
